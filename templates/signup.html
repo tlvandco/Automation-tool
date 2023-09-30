@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Sign Up - Auto-Techyon{% endblock %}
+
+{% block body %}
+<div class="jumbotron">
+    <h1 class="display-4">Sign Up for Auto-Techyon</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form method="POST" action="/signup" id="signup-form">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Choose a username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Create a password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password" required>
+                    <p id="password-match-error" class="text-danger"></p>
+                </div>
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+            </form>
+            <script>
+                $(document).ready(function () {
+                    $("#signup-form").submit(function (event) {
+                        var password = $("#password").val();
+                        var confirm_password = $("#confirmPassword").val();
+                        var passwordMatchError = $("#password-match-error");
+        
+                        if (password !== confirm_password) {
+                            passwordMatchError.text("Passwords do not match. Please try again.");
+                            event.preventDefault(); // Prevent form submission
+                        } else {
+                            passwordMatchError.text(""); // Clear any previous error messages
+                        }
+                    });
+                });
+            </script>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul>
+                {% for message in messages %}
+                    <li class="alert alert-primary">{{message}}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+            {% endwith %}
+        </div>
+    </div>
+</div>
+{% endblock %}

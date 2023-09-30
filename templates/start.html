@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block body %}
+
+    <div class="container" id="start-page">
+        <link rel="stylesheet" href="{{ url_for('static', filename='/css/style.css') }}">
+        <h1>Start a New Project</h1>
+        <form method="POST" action="/create_project" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="title">Project Title:</label>
+                <input type="text" class="form-control" id="title" name="title" required>
+            </div>
+            <div class="form-group">
+                <label for="document">Document (Word, PDF, or HTML):</label>
+                <input type="file" class="form-control-file" id="document" name="document" accept=".doc,.pdf,.html">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <br>
+        {{message}}
+    </div>
+
+{% endblock %}

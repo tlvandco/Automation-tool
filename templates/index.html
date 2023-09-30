@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+<!-- Hero Section -->
+<div class="container mt-5">
+    <div class="jumbotron">
+        <h1 class="display-4">Welcome to Auto-Techyon</h1>
+        <p class="lead">Your trusted partner for testing as a service.</p>
+        <hr class="my-4">
+        <p>We provide high-quality testing solutions to meet your software testing needs.</p>
+        <a class="btn btn-info btn-lg" href="#" role="button">Learn More</a>
+    </div>
+</div>
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h2>Start Project</h2>
+                    <p>Click here to start a new project.</p>
+                    <a href="/start" class="btn btn-primary">Start Project</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h2>Manage Projects</h2>
+                    <p>View and manage your existing projects.</p>
+                    <a href="/manage" class="btn btn-secondary">Manage Projects</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

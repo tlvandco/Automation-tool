@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="container mt-4">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/style.css') }}">
+    <h1 class="display-4">Manage Projects</h1>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Project Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for project in projects %}
+                <tr>
+                    <td class="wide-td-id">{{ project.id }}</td>
+                    <td class="wide-td"> {{ project.title }}</td>
+                    <td class="text-center">
+                        <a href="#" class="btn btn-danger btn-sm" data-id="{{ project.id }}" onclick="deleteProject(this)">Delete</a>
+                        <button id="showUpdateForm" class="btn btn-secondary btn-sm">Show Update Form</button>
+                        <div id="updateForm" style="display: none;">
+                            <form action="/update/{{ project.id }}" method="POST" enctype="multipart/form-data">
+                                <input type="file" name="new_document" accept=".pdf, .doc, .docx">
+                                <button type="submit" class="btn btn-primary btn-sm">Update</button>
+                            </form>
+                        </div>
+                        <a href="/export/word/{{ project.id }}" class="btn btn-primary btn-sm">extract & work</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <script>
+            function deleteProject(button) {
+                var projectId = button.getAttribute('data-id');
+                
+                // Send an AJAX request to delete the project
+                fetch(`/delete/${projectId}`, {
+                    method: 'DELETE'
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // Item successfully deleted, refresh the page
+                        location.reload();
+                    } else {
+                        // Handle the error, display an alert, or perform other actions
+                        console.error('Failed to delete item');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            }
+            document.addEventListener('DOMContentLoaded', function() {
+                const showUpdateButton = document.getElementById('showUpdateForm');
+                const updateForm = document.getElementById('updateForm');
+        
+                showUpdateButton.addEventListener('click', function() {
+                    if (updateForm.style.display === 'none') {
+                        updateForm.style.display = 'block';
+                    } else {
+                        updateForm.style.display = 'none';
+                    }
+                });
+            });
+        </script>
+        
+    </div>
+</div>
+{% endblock %}
+
