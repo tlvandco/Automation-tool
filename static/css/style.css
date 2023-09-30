@@ -1,0 +1,18 @@
+/* Set the background image for the body */
+#start-page {
+    background-image: url('/static/background-image.jpg'); 
+    background-size: contain; 
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent repeating the image */
+    background-attachment: fixed; /* Fixed background */
+    background-blend-mode: color-burn;
+}
+/* Increase the width of the .wide-td class */
+.wide-td {
+    width: 30%; /* Adjust the width as needed */
+}
+.wide-td-id {
+    width: 15%;
+}
+
+/* Add additional styling as needed */
