@@ -57,6 +57,90 @@
     color: #fff; /* Text color for the active link */
 }
 
+/* Custom CSS for the nav-link */
+.nav-link {
+    color: #00f2ff; /* Set the text color to blue */
+    text-decoration: none; /* Remove the default underline */
+    font-weight: bold; /* Make the text bold */
+    font-size: 16px; /* Set the font size */
+}
+
+.nav-link:hover {
+    color: #0056b3; /* Change text color on hover */
+}
+
+
+/*sign-up form*/
+/* Custom CSS for the jumbotron */
+.jumbotron {
+    background-color: #2980b9;
+    color: white;
+    padding: 40px;
+    text-align: center;
+}
+
+.jumbotron h1 {
+    font-size: 36px;
+}
+
+/* Custom CSS for the form */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+}
+
+.form-control:focus {
+    border-color: #2980b9;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.text-danger {
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* Custom CSS for field names */
+/* .custom-label-username {
+    font-family: 'Verdana', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: underline;
+} */
+
+/* .custom-label-password {
+    font-family: 'Verdana', sans-serif;
+    font-size: 20px;
+    font-weight: italic;
+} */
+
+.custom-label-confirmPassword, .custom-label-password, .custom-label-username {
+    font-family: 'Arial', sans-serif;
+    font-size: 22px;
+    /* font-weight: bold; */
+    /* text-transform: uppercase; */
+}
+
+.custom-label-profile {
+    font-family: 'Courier New', monospace;
+    font-size: 18px;
+    font-weight: normal;
+    letter-spacing: 2px;
+}
+
+/* Custom CSS for password match error */
+.password-match-error {
+    color: rgba(172, 15, 15, 0.76);
+    font-size: 14px;
+    font-weight: bold;
+    display: block; /* Display the error message as a block element */
+}
+
+
+
 
 /* Add additional styling as needed */
 

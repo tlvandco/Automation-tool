@@ -7,6 +7,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired
 from werkzeug.utils import secure_filename
+from enum import Enum
 import os
 
 # Create a Flask app
@@ -27,10 +28,19 @@ class User(db.Model):
     def __repr__(self):
         return f"<User {self.username} : {self.id}>"
 
+
+class UserProfile(Enum):
+    ADMIN = 'admin'
+    USER_QA = 'user_qa'
+    USER_IT = 'user_it'
+    USER_DEV = 'user_dev'
+    GUEST = 'guest'
+
 class Project(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     document = db.Column(db.LargeBinary, nullable=False)
+    profile = db.Column(db.Enum(UserProfile), nullable=False, default=UserProfile.USER_QA)
     timestamp = db.Column(db.DateTime, default=datetime.utcnow)
 
 #---------------------------------------------------------------------------------->
