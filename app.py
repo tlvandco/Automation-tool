@@ -1,4 +1,4 @@
-from flask import Flask, flash, jsonify, render_template, redirect, session, url_for, request
+from flask import Flask, flash, get_flashed_messages, jsonify, render_template, redirect, session, url_for, request
 from flask_login import login_user, logout_user
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
@@ -40,38 +40,50 @@ class Project(db.Model):
 #------login---------
 @app.route('/login', methods=['GET','POST'])
 def login():
+    type = ""
     if request.method == "POST":
         username = request.form['username']
         password = request.form['password']
 
         user = User.query.filter_by(username=username, password=password).first()
-        print(f"{bool(user) }")
+        print(f"is authorised user: {bool(user) }")
         if bool(user):
             session['user_id'] = user.id  # Store user ID in session
             session['logged_in'] = True
             flash('Login successful!', 'success')
+            messages = get_flashed_messages(with_categories=True)    
+            type = messages[0][0]
             return redirect(url_for('home'))
         else:
             print("login failed")
             session['logged_in'] = False
             flash('Login failed. Please check your credentials and try again.', 'danger')
-    
-    return render_template("login.html")
+            messages = get_flashed_messages(with_categories=True)    
+            type = messages[0][0]
+    messages = get_flashed_messages(with_categories=True)    
+    if(messages):
+        type = messages[0][0]
+    return render_template("login.html", type=type)
     
 #------logout--------
 @app.route('/logout')
 def logout():
-    
+    type = ""
     if session['logged_in'] : 
-        flash('User logged out successfully!', 'danger')
+        flash('User logged out successfully!', 'info')
+        messages = get_flashed_messages(with_categories=True)    
+        type = messages[0][0]
         session['logged_in'] = False
     else:
         flash('No user Logged in', 'danger')
-    return redirect(url_for('login'))
+        messages = get_flashed_messages(with_categories=True)    
+        type = messages[0][0]
+    return render_template("login.html", type=type)
 
 #-----------------signup----------------------
 @app.route('/signup', methods=['GET','POST'])
 def signup():
+    type = ""
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -80,6 +92,8 @@ def signup():
         print(f"existing : {bool(existing_user)}")
         if existing_user:
             flash('Username already exists. Please choose another username.', 'danger')
+        if len(password)<8:
+            flash('password must be minimum of 8 charecters in length!', 'danger')
         else:
             print(f" creating user....")
             new_user = User(username=username, password=password)
@@ -87,20 +101,25 @@ def signup():
             db.session.commit()
             flash('Account created successfully. You can now login.', 'success')
             return redirect(url_for('login'))
-        
-    return render_template("signup.html")
+    messages = get_flashed_messages(with_categories=True)    
+    if(messages):
+        type = messages[0][0]
+    return render_template("signup.html", type=type)
+
+
 
 #-----------------------Home-----------------------
 # Define a route and a function to handle the route
 @app.route('/')
 def home():
+    type = ""
     if 'logged_in' in session and session['logged_in']:
         template = render_template('index.html')
     else:
-        flash('login required !', 'success')
-        template = render_template('login.html')
+        flash('Login required!', 'danger')
+        return redirect(url_for('login'))
     
-    return template
+    return render_template('index.html', type=type)
 
 
 #----------------check the users-------------------

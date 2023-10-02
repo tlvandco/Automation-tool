@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auto-Techyon</title>
+    <title>Intellimation</title>
     <!-- Add Bootstrap CSS Link -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
@@ -11,7 +11,8 @@
 
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Auto-Techyon</a>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <a class="navbar-brand" href="#">Intellimation</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -21,19 +22,27 @@
             <li class="nav-item">
                 <a class="nav-link" href="/">Home</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Services</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Services
+                </a>
+                <div class="dropdown-menu" aria-labelledby="servicesDropdown">
+                    <a class="dropdown-item" href="#">Service 1</a>
+                    <a class="dropdown-item" href="#">Service 2</a>
+                    <a class="dropdown-item" href="#">Service 3</a>
+                </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/login">login</a>
+                <a class="nav-link" href="/login">Login</a>
             </li>
-            {% if not request.path == '/login' and not  request.path == '/signup' %}
+            {% if not request.path == '/login' and not  request.path == '/signup' and not  request.path == '/logout' %}
                 <li class="nav-item">
                     <a class="nav-link" href="/logout">Logout</a>
                 </li>
-                {% endif %}
+            {% endif %}
         </ul>
     </div>
+    
 </nav>
 
 {%block body %} {% endblock %}
@@ -41,7 +50,7 @@
 
 <!-- Footer -->
 <footer class="bg-light text-center py-3">
-    <p>&copy; 2023 Auto-Techyon. All rights reserved.</p>
+    <p>&copy; 2023 Intellimation. All rights reserved.</p>
 </footer>
 
 <!-- Add Bootstrap JS and jQuery Scripts -->

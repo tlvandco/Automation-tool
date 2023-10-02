@@ -15,4 +15,48 @@
     width: 15%;
 }
 
+/* Navbar background color and link styling */
+.navbar {
+    background-color: #3498db; /* Change to your desired background color */
+}
+
+.navbar-nav .nav-item {
+    margin: 0 10px; /* Adjust the spacing between navbar items */
+}
+
+.navbar-nav .nav-link {
+    color: #fff; /* Text color for navbar links */
+    transition: background-color 0.2s, color 0.2s; /* Smooth transition on hover */
+}
+
+.navbar-nav .nav-link:hover {
+    background-color: #2980b9; /* Change to the hover background color you prefer */
+    color: #fff; /* Text color on hover */
+    border-radius: 5px;
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+    background-color: #3498db; /* Background color of dropdown menu */
+    border-radius: 5px;
+}
+
+.dropdown-item {
+    color: #fff; /* Text color for dropdown items */
+    transition: background-color 0.2s, color 0.2s; /* Smooth transition on hover */
+}
+
+.dropdown-item:hover {
+    background-color: #2980b9; /* Change to the hover background color you prefer */
+    color: #fff; /* Text color on hover */
+}
+
+/* Active link effect */
+.navbar-nav .nav-item.active .nav-link {
+    background-color: #2980b9; /* Background color for the active link */
+    color: #fff; /* Text color for the active link */
+}
+
+
 /* Add additional styling as needed */
+
