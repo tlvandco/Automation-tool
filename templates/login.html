@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 
-{% block title %}Login - Auto-Techyon{% endblock %}
+{% block title %}Login - Intellimation{% endblock %}
 
 {% block body %}
 <div class="jumbotron">
-    <h1 class="display-4">Login to Auto-Techyon</h1>
+    <h1 class="display-4">Login to Intellimation</h1>
     <div class="row justify-content-center">
         <div class="col-md-6">
             <form method="POST" action="/login">
@@ -24,12 +24,12 @@
                 <button type="submit" class="btn btn-primary">Login</button>
             </form>
             <br>
-            {% with messages = get_flashed_messages() %}
-            {% if messages %}
+                        {% with messages = get_flashed_messages() %}
+                        {% if messages %}
                 <ul>
-                {% for message in messages %}
-                    <li class="alert alert-primary">{{message}}</li>
-                {% endfor %}
+                    {% for message in messages %}
+                        <li class="alert alert-{{type}}">{{ message }}</li>
+                    {% endfor %}
                 </ul>
             {% endif %}
             {% endwith %}
