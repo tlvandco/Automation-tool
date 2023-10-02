@@ -6,23 +6,34 @@
 <div class="jumbotron">
     <h1 class="display-4">Sign Up for Intellimation</h1>
     <div class="row justify-content-center">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
         <div class="col-md-6">
             <form method="POST" action="/signup" id="signup-form">
                 <div class="form-group">
-                    <label for="username">Username</label>
+                    <label for="username" class="custom-label-username">Username</label>
                     <input type="text" class="form-control" id="username" name="username" placeholder="Choose a username" required>
                 </div>
                 <div class="form-group">
-                    <label for="password">Password</label>
+                    <label for="password" class="custom-label-password">Password</label>
                     <input type="password" class="form-control" id="password" name="password" placeholder="Create a password" required>
                 </div>
                 <div class="form-group">
-                    <label for="confirmPassword">Confirm Password</label>
+                    <label for="confirmPassword" class="custom-label-confirmPassword">Confirm Password</label>
                     <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
-                    <p id="password-match-error" class="text-danger"></p>
+                    <p id="password-match-error" class="password-match-error"></p>
                 </div>
-                <button type="submit" class="btn btn-primary">Sign Up</button>
-            </form>
+                <div class="form-group">
+                    <label for="profile" class="custom-label-profile">Profile</label>
+                    <select class="form-control" id="profile" name="profile" required>
+                        <option value="user_qa">User QA</option>
+                        <option value="user_it">User IT</option>
+                        <option value="user_dev">User Dev</option>
+                        <option value="admin">Admin</option>
+                        <option value="guest">Guest</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-info">Sign Up</button>
+            </form>            
                 <script src="/static/js/validation.js"></script>
                 <br/>                
             {% with messages = get_flashed_messages() %}
